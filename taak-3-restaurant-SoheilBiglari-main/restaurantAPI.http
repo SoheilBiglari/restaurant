@@ -1,0 +1,46 @@
+# Hieronder vind je de 3 mogelijk api calls voor de restaurant API
+# 
+# Alle api calls kunnen ook een fout boodschap sturen. Hieronder staat enkel de happy flow beschreven. 
+#
+# In VS code kan je deze file inlezen. Wanneer je de plugin REST client installeerd kan je ook de calls uitvoeren. 
+
+
+###
+# getAvailableTimeSlots.php
+# Hiermee kan je alle nog beschikbare tijdsslots ophalen.
+#
+# Heeft een query string met 2 parameters:
+# fromData & toDate => datum volgens formaat YYYY-MM-dd
+#
+# resultaat is een json array met telkens een date property
+###
+GET https://goudvis.xn--druw-epa.be/reservations/getAvailableTimeSlots.php?fromDate=2021-10-1&toDate=2021-11-1
+Accept: application/json
+
+###
+# getReservation.php
+# Hiermee kan je de details van 1 reservatie ophalen.
+#
+# Heeft een query string met 1 parameter:
+# code => de unieke code van een reservatie voor 1 gebruiker.
+#
+# Resultaat is een json-object met volgende eigenschappen: id, firstname, lastname, datetime, code, telephone, email
+###
+
+GET https://goudvis.xn--druw-epa.be/reservations/getReservation.php?code=9xfcdFu7
+Accept: application/json
+
+###
+# insert.php
+# Hiermee kan je voor een gebruiker een reservatie maken
+#
+# Heeft een JSON body nodig met volgende eigenschappen: firstname, lastname, datetime, telephone, email
+#
+# Wanneer de reservatie geslaagd is krijg je een json-object met de reservatie-code voor de gebruiker.
+###
+POST https://goudvis.xn--druw-epa.be/reservations/insert.php
+Content-Type: application/json
+
+{"firstname":"matthias", "lastname":"Druwé", "datetime":"2021-10-01 18:30", "telephone":"12345","email":"matthias.druwe@gmail.com"}
+
+
